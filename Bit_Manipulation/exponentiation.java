@@ -1,6 +1,6 @@
 package Bit_Manipulation;
 
-public class exponentiation {
+public class Exponentiation {
     public static int fastExponentiation(int x, int n) {
         int ans = 1;
         while(n > 0) {

@@ -1,6 +1,6 @@
 package Strings;
 
-public class shortestPath {
+public class ShortestPath {
     public static float destination(String str) {
         int x = 0, y = 0;
         for(int i = 0; i < str.length(); i++) {

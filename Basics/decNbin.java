@@ -2,7 +2,7 @@ package Basics;
 
 import java.util.Scanner;
 
-public class decNbin {
+public class DecNbin {
 
     public static int binToDec(int n) {
         int power = 0, dec = 0;

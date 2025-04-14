@@ -1,6 +1,6 @@
 package Arrays;
 
-public class trappingRainwater {
+public class TrappingRainwater {
     public static int rainwater(int arr[]) {
         int water = 0, waterLevel;
         if(arr.length <= 2) {

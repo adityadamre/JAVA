@@ -2,7 +2,7 @@ package Arrays;
 import java.util.*;
 
 //Kadane's Algorithm
-public class maxSubarray {
+public class MaxSubarray {
     public static int maxSubarr(int arr[]) {
         int maxSum = Integer.MIN_VALUE, currSum = 0;
         for(int i=0; i<arr.length; i++) {

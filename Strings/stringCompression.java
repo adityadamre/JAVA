@@ -1,6 +1,6 @@
 package Strings;
 
-public class stringCompression {
+public class StringCompression {
     public static String compression(String str) {
         StringBuilder sb = new StringBuilder("");
 

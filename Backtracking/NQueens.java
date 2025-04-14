@@ -5,7 +5,7 @@ public class NQueens {
     static int count = 0;
     
     static void printBoard(char board[][]) {
-        System.out.println("----------Chess Board----------");
+        System.out.println("----------Chess Board" + count + "----------");
         for(int i = 0; i < board.length; i++) {
             for(int j = 0; j < board.length; j++) {
                 System.out.print(board[i][j] + " ");

@@ -1,6 +1,6 @@
 package Arrays;
 
-public class duplicateOrDistinct {
+public class DuplicateOrDistinct {
     public static boolean duplicate(int arr[]) {
         for(int i = 0; i < arr.length-1; i++) {
             for(int j = i+1; j < arr.length; j++) {

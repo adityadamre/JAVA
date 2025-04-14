@@ -1,6 +1,6 @@
 package TwoD_Arrays;
 
-public class spiralMatrix {
+public class SpiralMatrix {
     public static void printSpiral(int arr[][]) {
         int startRow = 0;
         int startCol = 0;

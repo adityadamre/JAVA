@@ -2,7 +2,7 @@ package Arrays;
 
 //Best Time to Buy and Sell Stock
 
-public class buyNSellStock {
+public class BuyNSellStock {
     public static int stockProfit(int arr[]) {
         int maxProfit = 0, buyPrice = Integer.MAX_VALUE;
         for(int i = 0; i < arr.length; i++) {

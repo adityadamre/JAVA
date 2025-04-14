@@ -1,6 +1,6 @@
 package Strings;
 
-public class capitalize {
+public class Capitalize {
     public static String toUpperCase(String str) {
         StringBuilder sb = new StringBuilder("");
 

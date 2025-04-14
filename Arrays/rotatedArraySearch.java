@@ -1,6 +1,6 @@
 package Arrays;
 
-public class rotatedArraySearch {
+public class RotatedArraySearch {
     public static int search(int arr[], int target) {
         int start = 0, end = arr.length - 1;
         while(start <= end) {

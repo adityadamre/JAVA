@@ -1,6 +1,6 @@
 package Strings;
 
-public class pallindrome {
+public class Pallindrome {
     public static boolean isPallindrome(String str) {
         for (int i = 0; i <= (str.length()  - 1) / 2; i++) {
             if(str.charAt(i) != str.charAt(str.length() - 1 -i)) {

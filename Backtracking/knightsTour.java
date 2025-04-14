@@ -1,6 +1,6 @@
 package Backtracking;
 
-public class knightsTour {
+public class KnightsTour {
     private static final int rowMoves[] = {2, 1, -1, -2, -2, -1, 1, 2};
     private static final int colMoves[] = {1, 2, 2, 1, -1, -2, -2, -1};
     private static final int N = 8;

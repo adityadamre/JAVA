@@ -3,7 +3,7 @@ package Strings;
 // Problem No 3
 // Can be optimised , have done with current knowledge
 
-public class longestSubstring {
+public class LongestSubstring {
     public static int lengthOfLongestSubstring(String s) {
         int length = 1, index = 0, maxLength = 1;
 

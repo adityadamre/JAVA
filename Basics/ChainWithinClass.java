@@ -21,6 +21,6 @@ public class ChainWithinClass {
     }
 
     public static void main(String[] args) {
-        ChainWithinClass chainObj = new ChainWithinClass(2, 4);
+        // ChainWithinClass chainObj = new ChainWithinClass(2, 4);
     }
 }
