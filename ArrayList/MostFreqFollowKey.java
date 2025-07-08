@@ -1,15 +1,17 @@
 import java.util.*;
 
-public class FreqFollowKey {
+// LEETCODE 2190
+
+public class MostFreqFollowKey {
     static int freqFollowing(ArrayList<Integer> nums, int key) {
         int[] result = new int[1000];
-        for(int i = 0; i < nums.size(); i++) {
+        for(int i = 0; i < nums.size() - 1; i++) {
             if(nums.get(i) == key) {
                 result[nums.get(i+1) - 1]++;
             }
         }
         int max = Integer.MIN_VALUE;
-        int ans = 0;
+        int ans = -1;
         for(int i = 0; i < 1000; i++) {
             if(max < result[i]) {
                 max = result[i];

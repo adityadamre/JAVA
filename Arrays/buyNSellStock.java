@@ -1,6 +1,5 @@
-package Arrays;
-
 //Best Time to Buy and Sell Stock
+// LEETCODE 121
 
 public class BuyNSellStock {
     public static int stockProfit(int arr[]) {

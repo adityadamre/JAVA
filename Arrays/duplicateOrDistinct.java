@@ -1,5 +1,3 @@
-package Arrays;
-
 public class DuplicateOrDistinct {
     public static boolean duplicate(int arr[]) {
         for(int i = 0; i < arr.length-1; i++) {

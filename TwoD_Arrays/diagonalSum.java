@@ -1,5 +1,7 @@
 package TwoD_Arrays;
 
+// LEETCODE 1572
+
 public class DiagonalSum {
     public static int diagonal(int arr[][]) {
         int sum = 0;

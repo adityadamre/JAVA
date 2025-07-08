@@ -3,24 +3,24 @@ import java.util.*;
 public class BeautifulAL {
 
     // -------- RECURSIVE APPROACH --------
-    //
-    // static ArrayList<Integer> makeBeautiful(int n) {
-    //     ArrayList<Integer> ans = new ArrayList<>();
-    //     divideNConquer(1, 1, ans, n);
-    //     return ans;
-    // }
-    // static void divideNConquer(int start, int increment, ArrayList<Integer> ans, int n) {
-    //     if(start + increment > n) {
-    //         ans.add(start);
-    //         return;
-    //     }
+    
+    static ArrayList<Integer> makeBeautifulRec(int n) {
+        ArrayList<Integer> ans = new ArrayList<>();
+        divideNConquer(1, 1, ans, n);
+        return ans;
+    }
+    static void divideNConquer(int start, int increment, ArrayList<Integer> ans, int n) {
+        if(start + increment > n) {
+            ans.add(start);
+            return;
+        }
 
-    //     divideNConquer(start, 2 * increment, ans, n);
-    //     divideNConquer(start + increment, 2 * increment, ans, n);
-    // }
+        divideNConquer(start, 2 * increment, ans, n);
+        divideNConquer(start + increment, 2 * increment, ans, n);
+    }
 
     // -------- ITERATIVE APPROACH --------
-    //
+    
     static ArrayList<Integer> makeBeautiful(int n) {
         ArrayList<Integer> ans = new ArrayList<>();
         ans.add(1);

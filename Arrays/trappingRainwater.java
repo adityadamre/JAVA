@@ -1,7 +1,5 @@
-package Arrays;
-
 public class TrappingRainwater {
-    public static int rainwater(int arr[]) {
+    public static int rainwater(int[] arr) {
         int water = 0, waterLevel;
         if(arr.length <= 2) {
             return water;
@@ -26,7 +24,7 @@ public class TrappingRainwater {
         return water;
     }
     public static void main(String[] args) {
-        int arr[] = {4, 2, 0, 6, 3, 2, 5};
+        int[] arr = {4, 2, 0, 6, 3, 2, 5};
         System.out.println("Trapped Rainwater = " + rainwater(arr));
     }
 }

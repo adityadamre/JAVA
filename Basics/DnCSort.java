@@ -2,6 +2,7 @@ package Basics;
 
 public class DnCSort {
     
+    // -------MERGE SORT-------
     static void merge(int arr[], int st, int mid, int end) {
         int temp[] = new int[end - st + 1];
         int i = st, j = mid + 1, k = 0;
@@ -36,7 +37,7 @@ public class DnCSort {
         merge(arr, st, mid, end);
     }
 
-
+    // -------QUICK SORT-------
     static int partition(int arr[], int st, int end) {
         int pivot = arr[end];
         int i = st - 1;
