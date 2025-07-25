@@ -4,7 +4,7 @@ public class Permutation {
     static void findPermutation(String str, String ans) {
         if(str.length() == 0) {
             System.out.println(ans);
-                return;
+            return;
         }
 
         for(int i = 0; i < str.length(); i++) {

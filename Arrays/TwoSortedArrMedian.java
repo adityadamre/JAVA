@@ -1,4 +1,4 @@
-// LEETCODE 5
+// LEETCODE 4
 
 public class TwoSortedArrMedian {
     public static double findMedian(int[] nums1, int[] nums2) { // O(m + n) -> BruteForce

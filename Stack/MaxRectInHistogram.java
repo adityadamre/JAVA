@@ -46,6 +46,44 @@ public class MaxRectInHistogram {
         return maxArea;
     }
 
+    public static int largestRectangleAreaOpti(int[] arr) {
+        if(arr.length == 1) return arr[0];
+
+        int maxArea = 0;
+        Stack<Integer> st = new Stack<>();
+        
+        for(int i = 0; i < arr.length; i++) {
+            while(!st.isEmpty() && arr[i] < arr[st.peek()]) {
+                int ele = st.pop();
+                int nse = i, pse = st.isEmpty() ? -1 : st.peek();
+
+                maxArea = Math.max(maxArea, (arr[ele] * (nse - pse - 1)));
+
+                // if(!st.isEmpty()) {
+                //     maxArea = Math.max(maxArea, (arr[ele] * (i - st.peek() - 1)));
+                // } else {
+                //     maxArea = Math.max(maxArea, (arr[ele] * (i - (-1) - 1)));
+                // }
+            }
+            st.push(i);
+        }
+
+        while(!st.isEmpty()) {
+            int ele = st.pop();
+            int nse = arr.length, pse = st.isEmpty() ? -1 : st.peek();
+
+            maxArea = Math.max(maxArea, (arr[ele] * (nse - pse - 1)));
+
+            // if(!st.isEmpty()) {
+            //     maxArea = Math.max(maxArea, (arr[ele] * (arr.length - st.peek() - 1)));
+            // } else {
+            //     maxArea = Math.max(maxArea, (arr[ele] * (arr.length - (-1) - 1)));
+            // }
+        }
+
+        return maxArea;
+    }
+
     public static void main(String[] args) {
         int[] arr = {2, 1, 5, 6, 2, 3};
 
