@@ -115,7 +115,7 @@ public class BinaryTrees {
         return postOrder;
     }
 
-    public static ArrayList<Integer> postorderIterative1(Node root) {    // Also using a single stack, (special mention to claude BHAU)
+    public static ArrayList<Integer> postorderIterative1(Node root) {    // Also using a single stack, (special mention to Claude BHAU)
         ArrayList<Integer> result = new ArrayList<>();
         if (root == null) return result;
         
@@ -368,6 +368,46 @@ public class BinaryTrees {
         }
         System.out.println();
     }
+    
+    public static void KlevelRec(Node root, int level, int k) {
+        if(root == null) return;
+
+        if(level == k) {
+            System.out.print(root.data + " ");
+            return;
+        }
+
+        KlevelRec(root.left, level + 1, k);
+        KlevelRec(root.right, level + 1, k);
+    }
+
+    public static void KlevelItr(Node root, int k) {
+        Queue<Node> q = new LinkedList<>();
+        if(root == null) return;
+
+        int level = 1;
+        q.add(root);
+        q.add(null);
+
+        while(!q.isEmpty()) {
+            Node curr = q.remove();
+
+            if(curr == null) {
+                if(q.isEmpty()) {
+                    return;
+                } else {
+                    level++;
+                    q.add(null);
+                }
+            } else {
+                if(level == k) System.out.print(curr.data + " ");
+
+                if(curr.left != null) q.add(curr.left);
+
+                if(curr.right != null) q.add(curr.right);
+            }
+        }
+    }
 
     public static boolean getPath(Node root, ArrayList<Integer> arr, int target) {
         if(root == null) return false;
@@ -381,12 +421,157 @@ public class BinaryTrees {
         arr.remove(arr.size() - 1);
         return false;
     }
-
     public static ArrayList<Integer> findPath(Node root, int target) {
         ArrayList<Integer> arr = new ArrayList<>();
         if(root == null) return arr;
         getPath(root, arr, target);
         return arr;
+    }
+
+    public static int lca1(Node root, int n1, int n2) {
+        ArrayList<Integer> path1 = new ArrayList<>();
+        ArrayList<Integer> path2 = new ArrayList<>();
+
+        path1 = findPath(root, n1);
+        path2 = findPath(root, n2);
+
+        int i = 0;
+        for(; i < path1.size() && i < path2.size(); i++) {
+            if(path1.get(i) != path2.get(i)) break;
+        }
+
+        return path1.get(i - 1);
+    }
+
+    public static Node lca2(Node root, int n1, int n2) {
+        if(root == null || root.data == n1 || root.data == n2) return root;
+
+        Node leftLca = lca2(root.left, n1, n2);
+        Node rightLca = lca2(root.right, n1, n2);
+
+        if(leftLca == null) return rightLca;
+
+        if(rightLca == null) return leftLca;
+
+        return root;
+    }
+
+    public static int lcaDist(Node root, int target) {
+        if(root == null) return -1;
+
+        if(root.data == target) return 0;
+
+        int leftDist = lcaDist(root.left, target);
+        int rightDist = lcaDist(root.right, target);
+
+        if(leftDist == -1  && rightDist == -1) {
+            return -1;
+        } else if(leftDist == -1) {
+            return rightDist + 1;
+        } else {
+            return leftDist + 1;
+        }
+    }
+    public static int minDist(Node root, int n1, int n2) {
+        Node lca = lca2(root, n1, n2);
+        int dist1 = lcaDist(lca, n1);
+        int dist2 = lcaDist(lca, n2);
+
+        return dist1 + dist2;
+    }
+
+    public static int KthAncestor(Node root, int n, int k) {
+        if(root == null) return -1;
+
+        if(root.data == n) return 0;
+
+        int leftDist = KthAncestor(root.left, n, k);
+        int rightDist = KthAncestor(root.right, n, k);
+
+        if(leftDist == -1 && rightDist == -1) return -1;
+
+        int max = Math.max(leftDist, rightDist);
+        if(max + 1 == k) {
+            System.out.println(root.data);    // Output
+        }
+
+        return max + 1;
+    }
+
+    public static int helper(Node root) {
+        if(root == null) return 0;
+
+        int data = root.data;
+        int leftSum = helper(root.left);
+        int rightSum = helper(root.right);
+        root.data = leftSum + rightSum;
+
+        return data + root.data;
+    }
+
+    public static void sumTree(Node root) {
+        if(root == null) return;
+        helper(root);
+        levelorder(root);
+    }
+
+    public static int maxPathSum(Node root) {
+        int[] ans = new int[1];
+        ans[0] = Integer.MIN_VALUE;
+        ans[0] = maxPath(root, ans);
+        return ans[0];
+    }
+
+    public static int maxPath(Node root, int[] ans) {
+        if(root == null) return 0;
+
+        int leftSum = Math.max(0, maxPath(root.left, ans));
+        int rightSum = Math.max(0, maxPath(root.right, ans));
+
+        ans[0] = Math.max(ans[0], leftSum + rightSum + root.data);
+
+        return Math.max(leftSum, rightSum) + root.data;
+    }
+
+    static class info2 {
+        Node node;
+        int id;
+
+        info2(Node node, int id) {
+            this.node = node;
+            this.id = id;
+        }
+    }
+
+    public int widthOfBinaryTree(Node root) {
+        if(root == null) return 0;
+        int ans = 0;
+        Queue<info2> q = new LinkedList<>();
+        q.offer(new info2(root, 0));
+
+        while(!q.isEmpty()) {
+            int size = q.size();
+            int min = q.peek().id;
+            int first = 0, last = 0;
+
+            for(int i = 0; i < size; i++) {
+                int currId = q.peek().id - min;
+                Node node = q.peek().node;
+                q.poll();
+                if(i == 0) first = currId;
+                if(i == size-1) last = currId;
+
+                if(node.left != null) {
+                    q.offer(new info2(node.left, (2*currId) + 1));
+                }
+                if(node.right != null) {
+                    q.offer(new info2(node.right, (2*currId) + 2));
+                }
+            }
+            ans = Math.max(ans, last - first + 1);
+        }
+
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -402,12 +587,24 @@ public class BinaryTrees {
         root.right = new Node(3);
         root.right.right = new Node(6);
 
-        ArrayList<Integer> list = postorderIterative1(root);
-        System.out.println(list);
+        // ArrayList<Integer> list = postorderIterative1(root);
+        // System.out.println(list);
         
         // bottomView(root);
 
         // System.out.println(findPath(root, 6));
+
+        // KlevelItr(root, 3);
+
+        // System.out.println(lca1(root, 5, 6));
+
+        // System.out.println(minDist(root, 4, 5));
+
+        // KthAncestor(root, 6, 1);
+
+        // sumTree(root);
+
+        // System.out.println(maxPathSum(root));
 
         // levelorder(root);
         // System.out.println("Height : " + height(root));
