@@ -1,5 +1,3 @@
-package TwoD_Arrays;
-
 public class SpiralMatrix {
     public static void printSpiral(int arr[][]) {
         int startRow = 0;

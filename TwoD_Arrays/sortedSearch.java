@@ -1,5 +1,3 @@
-package TwoD_Arrays;
-
 public class SortedSearch {
     public static void staircaseSearch(int arr[][], int key) {
         int row = 0, col = arr[0].length - 1;

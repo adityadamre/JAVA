@@ -543,7 +543,7 @@ public class BinaryTrees {
         }
     }
 
-    public int widthOfBinaryTree(Node root) {
+    public static int widthOfBinaryTree(Node root) {
         if(root == null) return 0;
         int ans = 0;
         Queue<info2> q = new LinkedList<>();
@@ -572,6 +572,118 @@ public class BinaryTrees {
         }
 
         return ans;
+    }
+
+    private static void markParents(Node root, Map<Node, Node> parentTrack, Node target) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()) {
+            Node current = queue.poll();
+            if(current.left != null) {
+                parentTrack.put(current.left, current);
+                queue.offer(current.left);
+            }
+            if(current.right != null) {
+                parentTrack.put(current.right, current);
+                queue.offer(current.right);
+            }
+        }
+    }
+
+    public static List<Integer> distanceK(Node root, Node target, int k) {
+        Map<Node, Node> parentTrack = new HashMap<>();
+        markParents(root, parentTrack, target);
+        Map<Node, Boolean> visited = new HashMap<>();
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.offer(target);
+        visited.put(target, true);
+        int currLevel = 0;
+
+        while(!queue.isEmpty()) {
+            int size = queue.size();
+            if(currLevel == k) break;
+            currLevel++;
+
+            for(int i = 0; i < size; i++) {
+                Node current = queue.poll();
+                if(current.left != null && visited.get(current.left) == null) {
+                    queue.offer(current.left);
+                    visited.put(current.left, true);
+                }
+                if(current.right != null && visited.get(current.right) == null) {
+                    queue.offer(current.right);
+                    visited.put(current.right, true);
+                }
+                if(parentTrack.get(current) != null && visited.get(parentTrack.get(current)) == null) {
+                    queue.offer(parentTrack.get(current));
+                    visited.put(parentTrack.get(current), true);
+                }
+            }
+        }
+
+        List<Integer> res = new ArrayList<>();
+        while(!queue.isEmpty()) {
+            Node curr = queue.poll();
+            res.add(curr.data);
+        }
+
+        return res;
+    }
+
+    private static int heightLeft(Node root) {
+        Node curr = root;
+        int height = 0;
+
+        while(curr != null) {
+            curr = curr.left;
+            height++;
+        }
+
+        return height;
+    }
+    private static int heightRight(Node root) {
+        Node curr = root;
+        int height = 0;
+
+        while(curr != null) {
+            curr = curr.right;
+            height++;
+        }
+
+        return height;
+    }
+    public static int countNodesBT(Node root) {
+        if(root == null) return 0;
+
+        int lh = heightLeft(root);
+        int rh = heightRight(root);
+
+        if(lh == rh) return (1<<lh) - 1;
+
+        return (1 + countNodesBT(root.left) + countNodesBT(root.right));
+    }
+
+    public static void childrenSum(Node root) {  // GFG :- parent node must be equal to sum of its child (Leaf nodes don't have any restrictions)
+        if(root == null) return;
+
+        int child = 0;
+        if(root.left != null) child += root.left.data;
+        if(root.right != null) child += root.right.data;
+
+        if(child > root.data) root.data = child;
+        else {
+            if(root.left !=null) root.left.data = root.data;
+            if(root.right !=null) root.right.data = root.data;
+        }
+
+        childrenSum(root.left);
+        childrenSum(root.right);
+
+        int total = 0;
+        if(root.left != null) total += root.left.data;
+        if(root.right != null) total += root.right.data;
+        if(root.left != null || root.right != null) root.data = total;
     }
 
     public static void main(String[] args) {
@@ -605,6 +717,13 @@ public class BinaryTrees {
         // sumTree(root);
 
         // System.out.println(maxPathSum(root));
+
+        // System.out.println(distanceK(root, root, 2));
+
+        // System.out.println(countNodesBT(root));  // I/P must be a complete BT
+
+        childrenSum(root);
+        levelorder(root);
 
         // levelorder(root);
         // System.out.println("Height : " + height(root));

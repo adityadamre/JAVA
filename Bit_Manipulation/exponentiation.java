@@ -42,6 +42,10 @@ public class Exponentiation {
         System.out.println((char) (ch | ' '));
     }
 
+    public static boolean powerOfTwo(int n) {   // Return true if n = 2^x
+        return n > 0 && (n & (n-1)) == 0;
+    }
+
     public static void main(String[] args) {
         int x = 5, n = 4, a = 20;
         System.out.println(fastExponentiation(x, n));

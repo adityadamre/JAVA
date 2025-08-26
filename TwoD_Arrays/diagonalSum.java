@@ -1,5 +1,3 @@
-package TwoD_Arrays;
-
 // LEETCODE 1572
 
 public class DiagonalSum {

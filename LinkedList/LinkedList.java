@@ -363,6 +363,29 @@ public class LinkedList {
 
         return a;
     }
+
+    // LEETCODE 24
+    public Node swapPairs(Node head) {
+        if(head == null || head.next == null) return head;
+        
+        Node temp = new Node(0);
+        temp.next = head;
+        Node prev = temp;
+
+        while(head != null && head.next != null) {
+            Node first = head;
+            Node second = head.next;
+
+            prev.next = second;
+            first.next = second.next;
+            second.next = first;
+
+            prev = first;
+            head = head.next;
+        }
+
+        return temp.next;
+    }
     
 
     public static void main(String[] args) {
