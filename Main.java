@@ -1,63 +1,63 @@
 import java.util.*;
 
 public class Main {
-//     public static void quickSort(int[] arr, int low, int high) {
-//         if(low >= high) return;
-//         int mid = partition(arr, low, high);
-//         quickSort(arr, low, mid - 1);
-//         quickSort(arr, mid + 1, high);
-//     }
+    public static void quickSort(int[] arr, int low, int high) {
+        if(low >= high) return;
+        int mid = partition(arr, low, high);
+        quickSort(arr, low, mid - 1);
+        quickSort(arr, mid + 1, high);
+    }
 
-//     public static int partition(int[] arr, int low, int high) {
-//         int pivot = low;
-//         int i = low+1;
-//         int j = high;
+    public static int partition(int[] arr, int low, int high) {
+        int pivot = low;
+        int i = low+1;
+        int j = high;
 
-//         while(i <= j) {
-//             while(i <= j && arr[i] < arr[pivot]) i++;
+        while(i <= j) {
+            while(i <= j && arr[i] < arr[pivot]) i++;
 
-//             while(i <= j && arr[j] > arr[pivot]) j--;
+            while(i <= j && arr[j] > arr[pivot]) j--;
 
-//             if(i < j) {
-//                 int temp = arr[j];
-//                 arr[j] = arr[i];
-//                 arr[i] = temp;
-//             }
-//         }
-//         int temp = arr[j];
-//         arr[j] = arr[pivot];
-//         arr[pivot] = temp;
+            if(i < j) {
+                int temp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = temp;
+            }
+        }
+        int temp = arr[j];
+        arr[j] = arr[pivot];
+        arr[pivot] = temp;
 
-//         return j;
-//     }
+        return j;
+    }
 
-//     public static void merge(int[] arr, int low, int mid, int high) {
-//         int temp[] = new int[high - low + 1];
-//         int i = low, j = mid+1, k = 0;
+    public static void merge(int[] arr, int low, int mid, int high) {
+        int temp[] = new int[high - low + 1];
+        int i = low, j = mid+1, k = 0;
 
-//         while(i <= mid && j <= high) {
-//             if(arr[i] <= arr[j]) {
-//                 temp[k++] = arr[i++];
-//             } else {
-//                 temp[k++] = arr[j++];
-//             }
-//         }
+        while(i <= mid && j <= high) {
+            if(arr[i] <= arr[j]) {
+                temp[k++] = arr[i++];
+            } else {
+                temp[k++] = arr[j++];
+            }
+        }
 
-//         while(i <= mid) temp[k++] = arr[i++];
+        while(i <= mid) temp[k++] = arr[i++];
 
-//         while(j <= high) temp[k++] = arr[j++];
+        while(j <= high) temp[k++] = arr[j++];
 
-//         for(k = 0, i = low; k < temp.length; k++, i++) arr[i] = temp[k];
-//     }
+        for(k = 0, i = low; k < temp.length; k++, i++) arr[i] = temp[k];
+    }
 
-//     public static void mergeSort(int[] arr, int low, int high) {
-//         if(low >= high) return;
+    public static void mergeSort(int[] arr, int low, int high) {
+        if(low >= high) return;
 
-//         int mid = low + (high - low) / 2;
-//         mergeSort(arr, low, mid);
-//         mergeSort(arr, mid+1, high);
-//         merge(arr, low, mid, high);
-//     }
+        int mid = low + (high - low) / 2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid+1, high);
+        merge(arr, low, mid, high);
+    }
 
     static class Node {
         int data;

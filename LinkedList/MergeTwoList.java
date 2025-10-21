@@ -1,7 +1,7 @@
 // LEETCODE 21
 
 public class MergeTwoList {
-    public static class Node {
+    static class Node {
         int data;
         Node next;
 

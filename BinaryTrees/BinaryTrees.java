@@ -117,20 +117,20 @@ public class BinaryTrees {
 
     public static ArrayList<Integer> postorderIterative1(Node root) {    // Also using a single stack, (special mention to Claude BHAU)
         ArrayList<Integer> result = new ArrayList<>();
-        if (root == null) return result;
+        if(root == null) return result;
         
         Stack<Node> stack = new Stack<>();
         Node lastVisited = null;
         Node current = root;
         
-        while (current != null || !stack.isEmpty()) {
-            if (current != null) {
+        while(current != null || !stack.isEmpty()) {
+            if(current != null) {
                 stack.push(current);
                 current = current.left;
             } else {
                 Node peekNode = stack.peek();   // Keeps track of lastvisited node & avoid revisiting right subtrees
                 
-                if (peekNode.right != null && lastVisited != peekNode.right) {
+                if(peekNode.right != null && lastVisited != peekNode.right) {
                     current = peekNode.right;
                 } else {
                     result.add(peekNode.data);
