@@ -23,6 +23,7 @@ public class Main {
                 arr[j] = arr[i];
                 arr[i] = temp;
             }
+            i++; j--;
         }
         int temp = arr[j];
         arr[j] = arr[pivot];

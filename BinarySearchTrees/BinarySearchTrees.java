@@ -287,6 +287,57 @@ public class BinarySearchTrees {
         return predecessor;
     }
 
+    static class Pair {
+        int incl, excl;
+
+        public Pair(int i, int e) {
+            incl = i;
+            excl = e;
+        }
+    }
+
+    private static Pair helper(Node root) {
+        if(root == null) return new Pair(0, 0);
+
+        Pair left = helper(root.left);
+        Pair right = helper(root.right);
+
+        int incl = left.excl + right.excl + root.data;
+
+        int excl = Math.max(left.incl, left.excl) + Math.max(right.incl, right.excl);
+
+        return new Pair(incl, excl);
+    }
+
+    public static int houseRobber(Node root) {
+        Pair res = helper(root);
+
+        return Math.max(res.incl, res.excl);
+    }
+
+    public static Node greaterSumTree(Node root) {
+        if(root == null || (root.left == null && root.right == null)) return root;
+
+        Stack<Node> st = new Stack<>();
+        Node temp = root;
+        int sum = 0;
+
+        while(true) {
+            if(temp != null) {
+                st.push(temp);
+                temp = temp.right;
+            } else {
+                if(st.isEmpty()) break;
+                temp = st.pop();
+                sum += temp.data;
+                temp.data = sum;
+                temp = temp.left;
+            }
+        }
+
+        return root;
+    }
+
     public static void main(String[] args) {
         // int[] arr = {5, 3, 8, 10, 4, 2, 6, 7, 1, 9};
         // Node root = null;
@@ -357,5 +408,10 @@ public class BinarySearchTrees {
         // preOrder(root5);
 
         // System.out.println(KthSmallest(root, 10));
+
+        // System.out.println(houseRobber(root2));
+
+        // Node root6 = greaterSumTree(root2);
+        // inOrder(root6);
     }
 }

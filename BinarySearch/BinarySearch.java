@@ -1,5 +1,5 @@
 package BinarySearch;
-import java.util.*;
+// import java.util.*;
 
 public class BinarySearch {
     public static int lowerBound(int[] arr, int target) {
