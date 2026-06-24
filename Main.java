@@ -9,25 +9,24 @@ public class Main {
     }
 
     public static int partition(int[] arr, int low, int high) {
-        int pivot = low;
+        int pivot = arr[low];
         int i = low+1;
         int j = high;
 
         while(i <= j) {
-            while(i <= j && arr[i] < arr[pivot]) i++;
+            while(i <= j && arr[i] <= pivot) i++;
 
-            while(i <= j && arr[j] > arr[pivot]) j--;
+            while(i <= j && arr[j] > pivot) j--;
 
             if(i < j) {
                 int temp = arr[j];
                 arr[j] = arr[i];
                 arr[i] = temp;
             }
-            i++; j--;
         }
         int temp = arr[j];
-        arr[j] = arr[pivot];
-        arr[pivot] = temp;
+        arr[j] = arr[low];
+        arr[low] = temp;
 
         return j;
     }

@@ -94,7 +94,7 @@ public class SubArrays {
     }
 
     // LEETCODE 1248
-    private int helper2(int[] nums, int k) {
+    private int helper2(int[] nums, int k) {  // Count subarrays with exactly k odd elements
         if(k < 0) return 0;
 
         int l = 0, r = 0;

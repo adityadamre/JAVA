@@ -15,14 +15,14 @@ public class SpiralMatrix {
             }
 
             for(int i = endCol - 1; i >= startCol; i--) {
-                if(startCol == endCol) {
+                if(startCol == endCol || startRow == endRow) {
                     break;
                 }
                 System.out.print(arr[endRow][i] + " ");
             }
 
             for(int i = endRow - 1; i >= startRow + 1; i--) {
-                if(startRow == endRow) {
+                if(startRow == endRow || startCol == endCol) {
                     break;
                 }
                 System.out.print(arr[i][startCol] + " ");
